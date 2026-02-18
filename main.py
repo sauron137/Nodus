@@ -1,3 +1,5 @@
+from parser import parse, StatementType
+
 def handle_meta_command(command):
     if command == ".help":
         print("Meta-commands:")
@@ -12,7 +14,14 @@ def handle_meta_command(command):
         print(f"Unrecognized meta-command {command}")
 
 def handle_sql(statement):
-    print(f"SQL received: {statement}")
+    result = parse(statement)
+
+    if result.statement_type == StatementType.CREATE_TABLE:
+        print(f"Parsed CREATE TABLE – table: {result.table_name}, columns: {result.columns}")
+    elif result.statement_type == StatementType.INSERT:
+        print(f"Parsed INSERT – table: {result.table_name}, values: {result.values}")
+    else:
+        print(f"Unrecognized SQL statement: {statement}")
 
 def start_repl():
     print("SQLite Clone — type '.help' or '.exit' to get started.")
