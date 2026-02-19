@@ -37,7 +37,7 @@ def parse_insert(user_input):
         after_keyword = user_input.strip()[len("INSERT INTO"):].strip()
         paren_open = after_keyword.index("(")
         paren_close = after_keyword.index(")")
-        table_name = after_keyword[paren_open].strip()
+        table_name = after_keyword[:paren_open].strip()
         values_raw = after_keyword[paren_open + 1:paren_close]
         values = [val.strip() for val in values_raw.split(",")]
         return Statement(StatementType.INSERT, table_name=table_name, values=values)

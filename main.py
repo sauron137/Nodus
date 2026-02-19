@@ -1,4 +1,9 @@
 from parser import parse, StatementType
+from database import Database
+
+db = Database()
+
+
 
 def handle_meta_command(command):
     if command == ".help":
@@ -17,9 +22,11 @@ def handle_sql(statement):
     result = parse(statement)
 
     if result.statement_type == StatementType.CREATE_TABLE:
-        print(f"Parsed CREATE TABLE – table: {result.table_name}, columns: {result.columns}")
+        message = db.create_table(result.table_name, result.columns)
+        print(message)
     elif result.statement_type == StatementType.INSERT:
-        print(f"Parsed INSERT – table: {result.table_name}, values: {result.values}")
+        message = db.insert(result.table_name, result.values)
+        print(message)
     else:
         print(f"Unrecognized SQL statement: {statement}")
 
@@ -43,4 +50,3 @@ def start_repl():
 
 if __name__ == "__main__":
     start_repl()
-
