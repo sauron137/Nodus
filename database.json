@@ -1,0 +1,26 @@
+{
+  "users": {
+    "columns": [
+      "id",
+      "name",
+      "email"
+    ],
+    "rows": [
+      {
+        "id": "1",
+        "name": "ada",
+        "email": "ada@gmail.com"
+      },
+      {
+        "id": "2",
+        "name": "john",
+        "email": "john@gmail.com"
+      },
+      {
+        "id": "3",
+        "name": "kat",
+        "email": "kat@gmail.com"
+      }
+    ]
+  }
+}
